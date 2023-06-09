@@ -6,61 +6,103 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nama_penginapan = $_POST["nama_penginapan"];
     $deskripsi = $_POST["deskripsi"];
 
-    // Mengunggah file gambar
+    // Mengunggah file gambar pertama
     $targetDir = "uploads/";
-    $fileName = uniqid() . '_' . $_FILES["gambar"]["name"];
-    $targetFile = $targetDir . basename($fileName);
     $uploadOk = 1;
-    $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
+    $fileName1 = '';
+    $fileName2 = '';
 
-    // Periksa apakah file gambar benar atau bukan
-    if (isset($_POST["submit"])) {
-        $check = getimagesize($_FILES["gambar"]["tmp_name"]);
-        if ($check !== false) {
-            echo "File adalah gambar - " . $check["mime"] . ".";
+    // Mengunggah gambar pertama
+    if (!empty($_FILES['gambar']['name'])) {
+        $fileName1 = uniqid() . '_' . $_FILES["gambar"]["name"];
+        $targetFile1 = $targetDir . basename($fileName1);
+        $imageFileType1 = strtolower(pathinfo($targetFile1, PATHINFO_EXTENSION));
+
+        $check1 = getimagesize($_FILES["gambar"]["tmp_name"]);
+        if ($check1 !== false) {
             $uploadOk = 1;
         } else {
             echo "File bukan gambar.";
             $uploadOk = 0;
         }
-    }
 
-    // Periksa apakah file sudah ada
-    if (file_exists($targetFile)) {
-        echo "Maaf, file gambar sudah ada.";
-        $uploadOk = 0;
-    }
-
-    // Batasi jenis file gambar yang diizinkan
-    $allowedExtensions = array("jpg", "jpeg", "png", "gif");
-    if (!in_array($imageFileType, $allowedExtensions)) {
-        echo "Maaf, hanya file JPG, JPEG, PNG, dan GIF yang diizinkan.";
-        $uploadOk = 0;
-    }
-
-    // Periksa ukuran file gambar
-    $maxFileSize = 2 * 1024 * 1024; // 2MB
-    if ($_FILES["gambar"]["size"] > $maxFileSize) {
-        echo "Maaf, ukuran file gambar terlalu besar. Maksimal 2MB.";
-        $uploadOk = 0;
-    }
-
-    // Jika tidak ada kesalahan, pindahkan file ke folder tujuan
-    if ($uploadOk == 1) {
-        if (move_uploaded_file($_FILES["gambar"]["tmp_name"], $targetFile)) {
-            echo "File gambar berhasil diunggah.";
-
-            // Query untuk memasukkan data penginapan ke dalam tabel
-            $sql = "INSERT INTO penginapan (nama_penginapan, deskripsi, gambar) VALUES ('$nama_penginapan', '$deskripsi', '$fileName')";
-
-            if (mysqli_query($conn, $sql)) {
-                echo "Data penginapan berhasil dimasukkan ke database.";
-            } else {
-                echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-            }
-        } else {
-            echo "Maaf, terjadi kesalahan saat mengunggah file gambar.";
+        if (file_exists($targetFile1)) {
+            echo "Maaf, file gambar sudah ada.";
             $uploadOk = 0;
+        }
+
+        $allowedExtensions = array("jpg", "jpeg", "png", "gif");
+        if (!in_array($imageFileType1, $allowedExtensions)) {
+            echo "Maaf, hanya file JPG, JPEG, PNG, dan GIF yang diizinkan.";
+            $uploadOk = 0;
+        }
+
+        $maxFileSize = 2 * 1024 * 1024; // 2MB
+        if ($_FILES["gambar"]["size"] > $maxFileSize) {
+            echo "Maaf, ukuran file gambar terlalu besar. Maksimal 2MB.";
+            $uploadOk = 0;
+        }
+
+        if ($uploadOk == 1) {
+            if (move_uploaded_file($_FILES["gambar"]["tmp_name"], $targetFile1)) {
+                echo "File gambar 1 berhasil diunggah.";
+            } else {
+                echo "Maaf, terjadi kesalahan saat mengunggah file gambar 1.";
+                $uploadOk = 0;
+            }
+        }
+    }
+
+    // Mengunggah gambar kedua
+    if (!empty($_FILES['gambar2']['name'])) {
+        $fileName2 = uniqid() . '_' . $_FILES["gambar2"]["name"];
+        $targetFile2 = $targetDir . basename($fileName2);
+        $imageFileType2 = strtolower(pathinfo($targetFile2, PATHINFO_EXTENSION));
+
+        $check2 = getimagesize($_FILES["gambar2"]["tmp_name"]);
+        if ($check2 !== false) {
+            $uploadOk = 1;
+        } else {
+            echo "File bukan gambar.";
+            $uploadOk = 0;
+        }
+
+        if (file_exists($targetFile2)) {
+            echo "Maaf, file gambar sudah ada.";
+            $uploadOk = 0;
+        }
+
+        $allowedExtensions = array("jpg", "jpeg", "png", "gif");
+        if (!in_array($imageFileType2, $allowedExtensions)) {
+            echo "Maaf, hanya file JPG, JPEG, PNG, dan GIF yang diizinkan.";
+            $uploadOk = 0;
+        }
+
+        $maxFileSize = 2 * 1024 * 1024; // 2MB
+        if ($_FILES["gambar2"]["size"] > $maxFileSize) {
+            echo "Maaf, ukuran file gambar terlalu besar. Maksimal 2MB.";
+            $uploadOk = 0;
+        }
+
+        if ($uploadOk == 1) {
+            if (move_uploaded_file($_FILES["gambar2"]["tmp_name"], $targetFile2)) {
+                echo "File gambar 2 berhasil diunggah.";
+            } else {
+                echo "Maaf, terjadi kesalahan saat mengunggah file gambar 2.";
+                $uploadOk = 0;
+            }
+        }
+    }
+
+    // Jika tidak ada kesalahan, masukkan data penginapan ke dalam tabel
+    if ($uploadOk == 1) {
+        // Query untuk memasukkan data penginapan ke dalam tabel
+        $sql = "INSERT INTO penginapan (nama_penginapan, deskripsi, gambar, gambar2) VALUES ('$nama_penginapan', '$deskripsi', '$fileName1', '$fileName2')";
+
+        if (mysqli_query($conn, $sql)) {
+            echo "Data penginapan berhasil dimasukkan ke database.";
+        } else {
+            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
         }
     }
 
@@ -83,8 +125,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label for="deskripsi">Deskripsi:</label>
         <textarea name="deskripsi" id="deskripsi" required></textarea><br><br>
 
-        <label for="gambar">Gambar Penginapan:</label>
-        <input type="file" name="gambar" required><br>
+        <label for="gambar">Gambar Penginapan 1:</label>
+        <input type="file" name="gambar"><br>
+
+        <label for="gambar2">Gambar Penginapan 2:</label>
+        <input type="file" name="gambar2"><br>
 
         <input type="submit" name="submit" value="Submit">
     </form>
