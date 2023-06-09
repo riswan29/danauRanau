@@ -1,0 +1,77 @@
+.chat-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+  }
+    .chat-popup {
+      position: fixed;
+      bottom: 80px;
+      right: 30px;
+      width: 300px;
+      height: calc(100% - 280px);
+      background-color: #fff;
+      border: 1px solid #ccc;
+      padding: 20px;
+      overflow-y: auto;
+      display: none;
+      }
+  .chat-form {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: #f2f2f2;
+    border-top: 1px solid #ccc;
+  }
+
+  .chat-form input {
+    width: 80%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+  }
+
+  .chat-form button {
+    width: 18%;
+    background-color: #8e44ad;
+    color: white;
+    padding: 14px 10px;
+    /* margin-left: 2%; */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .chat-form button:hover {
+    background-color: #1f3947;
+  }
+
+.user-message {
+    display: inline-block;
+    background-color: #dcf8c6;
+    padding: 10px;
+    margin: 10px 10px 0 10px;
+    border-radius: 10px;
+    clear: both;
+    word-wrap: break-word;
+    max-width: 70%;
+    float: right; /* tambahkan property float: right */
+  }
+
+.bot-message {
+  float: left;
+  background-color: #e5e5e5;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+  clear: both;
+  word-wrap: break-word;
+  max-height: 250px;
+  overflow-y: scroll;
+  }

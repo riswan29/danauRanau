@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Form Input Wisata</title>
+    <script src="ckeditor/ckeditor.js"></script>
+</head>
+
+<body>
+    <h2>Form Input Wisata</h2>
+    <form method="POST" action="add_wisata.php" enctype="multipart/form-data">
+        <label for="nama_wisata">Nama Wisata:</label>
+        <input type="text" name="nama_wisata" id="nama_wisata" required><br><br>
+
+        <label for="deskripsi">Deskripsi:</label>
+        <textarea name="deskripsi" id="deskripsi" required></textarea><br><br>
+
+        <label for="kategori">Kategori:</label>
+        <select name="kategori" id="kategori">
+            <option value="Wisata Alam">Wisata Alam</option>
+            <option value="Wisata Kuliner">Wisata Kuliner</option>
+            <option value="Wisata Budaya dan Agama">Wisata Budaya dan Agama</option>
+        </select>
+        <br>
+        <label for="gambar">Gambar1:</label>
+        <input type="file" name="gambar" id="gambar" required>
+        <br>
+        <label for="gambar">Gambar2:</label>
+        <input type="file" name="gambar2" id="gambar" required><br><br>
+
+        <input type="submit" name="submit" value="Tambahkan">
+    </form>
+
+    <script>
+        CKEDITOR.replace('deskripsi');
+    </script>
+</body>
+
+</html>
