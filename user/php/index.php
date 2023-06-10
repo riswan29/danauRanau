@@ -60,10 +60,10 @@ $result_wahana = mysqli_query($conn, $query_wahana);
         <nav class="navbar">
             <a href="index.php"> Beranda</a>
             <a href="#"> tentang</a>
-            <a href="wisata.html"> wisata</a>
-            <a href="penginapan.html"> penginapan</a>
-            <a href="wahana.html"> wahana</a>
-            <a href="index.php#event"> event</a>
+            <a href="wisata.php"> wisata</a>
+            <a href="penginapan.php"> penginapan</a>
+            <a href="wahana.php"> wahana</a>
+            <a href="event.php"> event</a>
         </nav>
 
         <div id="menu-btn" class="fas fa-bars"></div>
@@ -204,7 +204,7 @@ $result_wahana = mysqli_query($conn, $query_wahana);
         ?>
     </div>
     <div class="load-more">
-        <a href="event.html" class="btn">load more</a>
+        <a href="event.php" class="btn">load more</a>
     </div>
 </section>
 <!-- home packages section starts  -->
@@ -240,7 +240,7 @@ $result_wahana = mysqli_query($conn, $query_wahana);
         ?>
     </div>
     <div class="load-more">
-        <a href="penginapan.html" class="btn">load more</a>
+        <a href="penginapan.php" class="btn">load more</a>
     </div>
 </section>
 
@@ -273,7 +273,7 @@ $result_wahana = mysqli_query($conn, $query_wahana);
         ?>
     </div>
     <div class="load-more">
-        <a href="wahana.html" class="btn">load more</a>
+        <a href="wahana.php" class="btn">load more</a>
     </div>
 </section>
 

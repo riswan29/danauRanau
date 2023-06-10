@@ -107,35 +107,65 @@ mysqli_close($conn);
 
 <!-- packages section ends -->
 
-<!-- footer section starts  -->
-
-<section class="footer">
-
-   <div class="box-container">
-
-      <div class="box">
-         <h3>Tentang kami</h3>
-         <p>Wisata Danau Ranau adalah destinasi wisata yang indah dengan berbagai wahana menarik dan penginapan yang nyaman.</p>
-      </div>
-
-      <div class="box">
-         <h3>Kontak</h3>
-         <p><i class="fas fa-map-marker-alt"></i> Jl. Danau Ranau, Sumatera Selatan, Indonesia</p>
-         <p><i class="fas fa-envelope"></i> info@wisatadanauranau.com</p>
-         <p><i class="fas fa-phone"></i> +123-456-7890</p>
-      </div>
-
-   </div>
-
-   <div class="credit">Created by <a href="https://yourwebsite.com/">Your Name</a> | All rights reserved.</div>
-
+<!-- bot -->
+<section>
+<img src="images/bot.png" alt="" class="chat-icon" width="50px" height="50px"">
+<div class="chat-popup">
+  <form class="chat-form" onsubmit="return submitForm(event)">
+    <input type="text" id="chat-input" placeholder="Tulis pesan anda disini...">
+    <button type="submit">Kirim</button>
+  </form>
+  <div id="chat-response"></div>
+</div>
+<!-- bot -->
 </section>
+   <!-- footer section starts  -->
 
-<!-- footer section ends -->
+   <section class="footer">
 
+      <div class="box-container">
+
+         <div class="box">
+            <h3>quick links</h3>
+            <a href="#"> <i class="fas fa-angle-right"></i> Beranda</a>
+            <a href="#about"> <i class="fas fa-angle-right"></i> tentang</a>
+            <a href="#destinasi"> <i class="fas fa-angle-right"></i> desitnasi</a>
+            <a href="#penginapan"> <i class="fas fa-angle-right"></i> penginapan</a>
+            <a href="#wahana"> <i class="fas fa-angle-right"></i> wahana</a>
+            <a href="#event"> <i class="fas fa-angle-right"></i> event</a>
+         </div>
+
+         <div class="box">
+            <h3>contact info</h3>
+            <a href="#"> <i class="fas fa-phone"></i> +62 823-9282-3072 </a>
+            <a href="#"> <i class="fas fa-phone"></i> +62 823-9282-3072 </a>
+            <a href="#"> <i class="fas fa-envelope"></i> Indahhusnul9@gmail.com </a>
+            <a href="#"> <i class="fas fa-map"></i> danau ranau, sumatera selatan </a>
+         </div>
+
+         <div class="box">
+            <h3>follow us</h3>
+            <a href="#"> <i class="fab fa-facebook-f"></i> facebook </a>
+            <a href="#"> <i class="fab fa-twitter"></i> twitter </a>
+            <a href="#"> <i class="fab fa-instagram"></i> instagram </a>
+            <a href="#"> <i class="fab fa-linkedin"></i> linkedin </a>
+         </div>
+
+      </div>
+
+      <div class="credit"> created by <span>indah husnul khotimah</span> | all rights reserved! </div>
+
+   </section>
+
+   <!-- footer section ends -->
+
+
+<!-- swiper js link  -->
+<script src="https://un pkg.com/swiper@7/swiper-bundle.min.js"></script>
 
 <!-- custom js file link  -->
 <script src="js/script.js"></script>
+<script src="js/bot.js"></script>
 
 </body>
 </html>

@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Mengunggah file gambar pertama
     $targetDir = "uploads/";
     $uploadOk = 1;
-    $fileName1 = '';
+    $fileName1 = '';    
     $fileName2 = '';
 
     // Mengunggah gambar pertama
