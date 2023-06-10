@@ -13,13 +13,13 @@ if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
     // Mengambil data wisata berdasarkan ID
-    $query = "SELECT * FROM wisata WHERE id = $id";
+    $query = "SELECT * FROM penginapan WHERE id = $id";
     $result = mysqli_query($conn, $query);
 
     // Memeriksa apakah data ditemukan
     if (mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_assoc($result);
-        $nama_wisata = $row['nama_wisata'];
+        $nama_penginapan = $row['nama_penginapan'];
         $gambar = $row['gambar'];
         $gambar2 = $row['gambar2'];
         $deskripsi = $row['deskripsi'];
@@ -83,7 +83,7 @@ mysqli_close($conn);
             <div class="swiper-wrapper">
 
                 <div class="swiper-slide slide"
-                    style="background:url(../../admin/wisata/uploads/<?php echo $gambar2; ?>) no-repeat">
+                    style="background:url(../../admin/penginapan/uploads/<?php echo $gambar2; ?>) no-repeat">
                     <!-- <div class="content">
                   <span>selamat datang di</span>
                   <h3>wisata danau ranau</h3>
@@ -97,7 +97,7 @@ mysqli_close($conn);
 
     <section class="home-packages">
 
-        <h1 class="heading-title" id="destinasi"> <?php echo $nama_wisata; ?>
+        <h1 class="heading-title" id="destinasi"> <?php echo $nama_penginapan; ?>
         </h1>
     </section>
 
@@ -105,7 +105,7 @@ mysqli_close($conn);
 
         <div class="image">
             <!-- <img src="images/objekwisata/7.Air_Terjun_Niagara/IMG_0680.jpg" alt=""> -->
-            <img src="../../admin/wisata/uploads/<?php echo $gambar; ?>" alt="Destination Image">
+            <img src="../../admin/penginapan/uploads/<?php echo $gambar; ?>" alt="Destination Image">
         </div>
 
         <div class="content">

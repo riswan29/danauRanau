@@ -67,7 +67,9 @@ if (mysqli_num_rows($result) > 0) {
         echo "<td>" . $row["deskripsi"] . "</td>";
         echo "<td>" . $row["latitude"] . "</td>";
         echo "<td>" . $row["longitude"] . "</td>";
-        echo "<td><img src='" . $row["gambar"] . "' alt='Gambar Wahana' width='100'></td>";
+        echo "<td><img src='uploads/" . $row["gambar"] . "' alt='Gambar Wahana 1' width='100'></td>";
+        echo "<td><img src='uploads/" . $row["gambar2"] . "' alt='Gambar Wahana 2' width='100'></td>";
+
         echo "<td><a href='edit.php?id=" . $row["id"] . "'>Edit</a> | <a href='tampil.php?delete=" . $row["id"] . "' onclick='return confirmDelete();'>Delete</a></td>";
         echo "</tr>";
         $no++;
