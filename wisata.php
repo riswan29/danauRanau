@@ -24,20 +24,32 @@
     <!-- header section starts  -->
 
     <section class="header">
-        <!-- Your header content goes here -->
-    </section>
+
+<a href="index.php" class="logo">Wisata danau ranau.</a>
+
+<nav class="navbar">
+   <a href="index.php">  Beranda</a>
+   <a href="#">  tentang</a>
+   <a href="wisata.php">  destinasi</a>
+   <a href="penginapan.php">  penginapan</a>
+   <a href="wahana.php">  wahana</a>
+   <a href="index.php#event">  event</a>
+</nav>
+<div id="menu-btn" class="fas fa-bars"></div>
+
+</section>
 
     <!-- header section ends -->
 
-    <div class="heading" style="background:url(images/header-bg-2.png) no-repeat">
-        <h1>Wahana</h1>
+    <div class="heading" style="background:url(images/header-bg-2.png) no-repeat">  
+        <h1>Wisata</h1>
     </div>
 
     <!-- packages section starts  -->
 
     <section class="packages">
 
-<h1 class="heading-title">wahana</h1>
+<h1 class="heading-title">Wisata</h1>
 
 <div class="box-container">
     <?php
@@ -65,18 +77,18 @@
 
         for ($i = 0; $i < count($data); $i++) {
             $row = $data[$i];
-            $nama_wahana = $row["nama_wisata"];
-            // echo $nama_wahana;
+            $nama_wisata = $row["nama_wisata"];
+            // echo $nama_wisata;
             // echo "<br>";
             $deskripsi = $row["deskripsi"];
             $gambar = $row["gambar"];
 
             echo '<div class="box">';
             echo '<div class="image">';
-            echo "<img src='../../admin/wisata/uploads/" . $gambar . "' alt=''>";
+            echo "<img src='admin/wisata/uploads/" . $gambar . "' alt=''>";
             echo '</div>';
             echo '<div class="content">';
-            echo '<h3>' . $nama_wahana . '</h3>';
+            echo '<h3>' . $nama_wisata . '</h3>';
             echo '<p>' . $deskripsi . '</p>';
             echo '<div class="stars">';
             echo '<i class="fas fa-star"></i>';

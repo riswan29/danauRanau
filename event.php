@@ -73,7 +73,7 @@
 
             echo '<div class="box">';
             echo '<div class="image">';
-            echo "<img src='../../admin/event/uploads/" . $gambar . "' alt=''>";
+            echo "<img src='admin/event/uploads/" . $gambar . "' alt=''>";
             echo '</div>';
             echo '<div class="content">';
             echo '<h3>' . $nama_wahana . '</h3>';

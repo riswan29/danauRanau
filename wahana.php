@@ -13,13 +13,13 @@ if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
     // Mengambil data wisata berdasarkan ID
-    $query = "SELECT * FROM penginapan WHERE id = $id";
+    $query = "SELECT * FROM wahana WHERE id = $id";
     $result = mysqli_query($conn, $query);
 
     // Memeriksa apakah data ditemukan
     if (mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_assoc($result);
-        $nama_penginapan = $row['nama_penginapan'];
+        $nama_wahana = $row['nama_wahana'];
         $gambar = $row['gambar'];
         $gambar2 = $row['gambar2'];
         $deskripsi = $row['deskripsi'];
@@ -60,15 +60,15 @@ mysqli_close($conn);
 
     <section class="header">
 
-        <a href="index.html" class="logo" id="#">Wisata Danau Ranau.</a>
+        <a href="index.php" class="logo" id="#">Wisata Danau Ranau.</a>
 
         <nav class="navbar">
-            <a href="index.html"> Beranda</a>
-            <a href="tentang.html"> tentang</a>
-            <a href="wisata.html"> wisata</a>
-            <a href="penginapan.html"> penginapan</a>
-            <a href="wahana.html"> wahana</a>
-            <a href="index.html#event"> event</a>
+            <a href="index.php"> Beranda</a>
+            <a href="tentang.php"> tentang</a>
+            <a href="wisata.php"> wisata</a>
+            <a href="penginapan.php"> penginapan</a>
+            <a href="wahana.php"> wahana</a>
+            <a href="index.php#event"> event</a>
         </nav>
 
         <div id="menu-btn" class="fas fa-bars"></div>
@@ -83,11 +83,11 @@ mysqli_close($conn);
             <div class="swiper-wrapper">
 
                 <div class="swiper-slide slide"
-                    style="background:url(../../admin/penginapan/uploads/<?php echo $gambar2; ?>) no-repeat">
+                    style="background:url(admin/wahana/uploads/<?php echo $gambar2; ?>) no-repeat">
                     <!-- <div class="content">
                   <span>selamat datang di</span>
                   <h3>wisata danau ranau</h3>
-                  <a href="wisata.html" class="btn">explore</a>
+                  <a href="wisata.php" class="btn">explore</a>
                </div> -->
                 </div>
     </section>
@@ -97,7 +97,7 @@ mysqli_close($conn);
 
     <section class="home-packages">
 
-        <h1 class="heading-title" id="destinasi"> <?php echo $nama_penginapan; ?>
+        <h1 class="heading-title" id="destinasi"> <?php echo $nama_wisata; ?>
         </h1>
     </section>
 
@@ -105,7 +105,7 @@ mysqli_close($conn);
 
         <div class="image">
             <!-- <img src="images/objekwisata/7.Air_Terjun_Niagara/IMG_0680.jpg" alt=""> -->
-            <img src="../../admin/penginapan/uploads/<?php echo $gambar; ?>" alt="Destination Image">
+            <img src="admin/wahana/uploads/<?php echo $gambar; ?>" alt="Destination Image">
         </div>
 
         <div class="content">

@@ -26,10 +26,10 @@
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="index.php">Tambah Data</a>
+                                    <a class="nav-link" aria-current="page" href="index.php">Tambah Data</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="views.php">Lihat data</a>
+                                    <a class="nav-link active" href="views.php">Lihat data</a>
                                 </li>
                             </ul>
                         </div>
@@ -132,12 +132,12 @@
                     <div class="col-md-12">
                         <br>
                         <br>
-                        <h1>Tambah Data</h1>
+                        <h1>Views Data</h1>
                         <br>
-                        <a href="wisata/add_wisata.html" class="myButton">Wisata</a>
-                        <a href="penginapan/add.php" class="myButton">Penginapan</a>
-                        <a href="wahana/add.php" class="myButton">Wahana</a>
-                        <a href="event/add.php" class="myButton">Event</a>
+                        <a href="wisata/tampil_wisata.php" class="myButton">Wisata</a>
+                        <a href="penginapan/tampil.php" class="myButton">Penginapan</a>
+                        <a href="wahana/tampil.php" class="myButton">Wahana</a>
+                        <a href="event/tampil.php" class="myButton">Event</a>
                     </div>
                 </div>
             </div>

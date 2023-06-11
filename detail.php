@@ -58,15 +58,15 @@ mysqli_close($conn);
 
     <section class="header">
 
-        <a href="index.html" class="logo" id="#">Wisata Danau Ranau.</a>
+        <a href="index.php" class="logo" id="#">Wisata Danau Ranau.</a>
 
         <nav class="navbar">
-            <a href="index.html">Beranda</a>
+            <a href="index.php">Beranda</a>
             <a href="#">Tentang</a>
-            <a href="wisata.html">Wisata</a>
-            <a href="penginapan.html">Penginapan</a>
-            <a href="wahana.html">Wahana</a>
-            <a href="index.html#event">Event</a>
+            <a href="wisata.php">Wisata</a>
+            <a href="penginapan.php">Penginapan</a>
+            <a href="wahana.php">Wahana</a>
+            <a href="index.php#event">Event</a>
         </nav>
 
         <div id="menu-btn" class="fas fa-bars"></div>
@@ -82,7 +82,7 @@ mysqli_close($conn);
             <?php if (isset($row)): ?>
                 <div class="destination">
                     <div class="image">
-                        <img src="../../admin/wisata/uploads/<?php echo $gambar; ?>" alt="Destination Image">
+                        <img src="admin/wisata/uploads/<?php echo $gambar; ?>" alt="Destination Image">
                     </div>
                     <div class="home-packages">
                     <h1 class="heading-title" id="destinasi"><?php echo $nama_wisata; ?></h1>

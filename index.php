@@ -84,7 +84,7 @@ $result_wahana = mysqli_query($conn, $query_wahana);
                     <div class="content">
                         <span>selamat datang di</span>
                         <h3>wisata danau ranau</h3>
-                        <a href="wisata.html" class="btn">explore</a>
+                        <a href="wisata.php" class="btn">explore</a>
                     </div>
                 </div>
 
@@ -93,7 +93,7 @@ $result_wahana = mysqli_query($conn, $query_wahana);
                     <div class="content">
                         <span>explore</span>
                         <h3>temukan tempat-tempat baru</h3>
-                        <a href="wisata.html" class="btn">explore</a>
+                        <a href="wisata.php" class="btn">explore</a>
                     </div>
                 </div>
 
@@ -102,7 +102,7 @@ $result_wahana = mysqli_query($conn, $query_wahana);
                     <div class="content">
                         <span>explore</span>
                         <h3>jadikan tur Anda menjadi luar biasa</h3>
-                        <a href="wisata.html" class="btn">explore</a>
+                        <a href="wisata.php" class="btn">explore</a>
                     </div>
                 </div>
 
@@ -147,7 +147,7 @@ $result_wahana = mysqli_query($conn, $query_wahana);
 
                 echo '<div class="box">';
                 echo '<div class="image">';
-                echo "<img src='../../admin/wisata/uploads/" . $row['gambar'] . "' alt=''>";
+                echo "<img src='admin/wisata/uploads/" . $row['gambar'] . "' alt=''>";
                 echo '</div>';
                 echo '<div class="content">';
                 echo '<h3>' . $row['nama_wisata'] . '</h3>';
@@ -185,7 +185,7 @@ $result_wahana = mysqli_query($conn, $query_wahana);
 
             echo '<div class="box">';
             echo '<div class="image">';
-            echo "<img src='../../admin/event/uploads/" . $row_event['gambar'] . "' alt=''>";
+            echo "<img src='admin/event/uploads/" . $row_event['gambar'] . "' alt=''>";
             echo '</div>';
             echo '<div class="content">';
             echo '<h3>' . $row_event['nama_event'] . '</h3>';
@@ -221,7 +221,7 @@ $result_wahana = mysqli_query($conn, $query_wahana);
 
             echo '<div class="box">';
             echo '<div class="image">';
-            echo "<img src='../../admin/penginapan/uploads/" . $row_penginapan['gambar'] . "' alt=''>";
+            echo "<img src='admin/penginapan/uploads/" . $row_penginapan['gambar'] . "' alt=''>";
             echo '</div>';
             echo '<div class="content">';
             echo '<h3>' . $row_penginapan['nama_penginapan'] . '</h3>';
@@ -254,7 +254,7 @@ $result_wahana = mysqli_query($conn, $query_wahana);
 
             echo '<div class="box">';
             echo '<div class="image">';
-            echo "<img src='../../admin/wahana/uploads/" . $row_wahana['gambar'] . "' alt=''>";
+            echo "<img src='admin/wahana/uploads/" . $row_wahana['gambar'] . "' alt=''>";
             echo '</div>';
             echo '<div class="content">';
             echo '<h3>' . $row_wahana['nama_wahana'] . '</h3>';

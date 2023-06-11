@@ -48,12 +48,13 @@ $result = mysqli_query($conn, $query);
 <body>
     <h2>Data Wisata</h2>
     <p>Total data: <?php echo getTotalData(); ?></p>
-    <table>
+    <table class='table'>
         <tr>
             <th>Nama</th>
             <th>Deskripsi</th>
             <th>Kategori</th>
             <th>Gambar</th>
+            <th>Gambar2</th>
         </tr>
         <?php
         // Menampilkan data wisata
@@ -72,6 +73,8 @@ $result = mysqli_query($conn, $query);
         }
         ?>
     </table>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>
 

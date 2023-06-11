@@ -4,7 +4,7 @@
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Wahana | Wisata Danau Ranau</title>
+   <title>Penginapan | Wisata Danau Ranau</title>
 
    <!-- swiper css link  -->
    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
@@ -24,15 +24,15 @@
 
 <section class="header">
 
-   <a href="index.html" class="logo">Wisata danau ranau.</a>
+   <a href="index.php" class="logo">Wisata danau ranau.</a>
 
    <nav class="navbar">
-      <a href="index.html">  Beranda</a>
+      <a href="index.php">  Beranda</a>
       <a href="#">  tentang</a>
-      <a href="wisata.html">  destinasi</a>
-      <a href="penginapan.html">  penginapan</a>
-      <a href="wahana.html">  wahana</a>
-      <a href="index.html#event">  event</a>
+      <a href="wisata.php">  destinasi</a>
+      <a href="penginapan.php">  penginapan</a>
+      <a href="wahana.php">  wahana</a>
+      <a href="index.php#event">  event</a>
    </nav>
    <div id="menu-btn" class="fas fa-bars"></div>
 
@@ -67,7 +67,7 @@ if (!$conn) {
 // Fungsi untuk mendapatkan data penginapan dari database
 function getPenginapan() {
     global $conn;
-    $query = "SELECT * FROM wahana";
+    $query = "SELECT * FROM penginapan";
     $result = mysqli_query($conn, $query);
     $penginapan = mysqli_fetch_all($result, MYSQLI_ASSOC);
     return $penginapan;
@@ -79,15 +79,15 @@ function showPenginapan($penginapan) {
     foreach ($penginapan as $item) {
         echo '<div class="box">';
         echo '<div class="image">';
-        echo "<img src='../../admin/wahana/uploads/" . $item['gambar'] . "' alt='' >";
+        echo "<img src='admin/penginapan/uploads/" . $item['gambar'] . "' alt='' >";
         echo '</div>';
         echo '<div class="content">';
-        echo '<h3>' . $item['nama_wahana'] . '</h3>';
+        echo '<h3>' . $item['nama_penginapan'] . '</h3>';
         echo '<p>' . $item['deskripsi'] . '</p>';
         echo '<div class="stars">';
         echo '<i class="fas fa-star"></i>';
         echo '</div>';
-        echo '<a href="detail_wahana.php?id=' . $item['id'] . '" class="btn">read more</a>';
+        echo '<a href="detail_penginapan.php?id=' . $item['id'] . '" class="btn">read more</a>';
         echo '</div>';
         echo '</div>';
     }
@@ -107,7 +107,6 @@ mysqli_close($conn);
 
 <!-- packages section ends -->
 
-<!-- bot -->
 <section>
 <img src="images/bot.png" alt="" class="chat-icon" width="50px" height="50px"">
 <div class="chat-popup">
