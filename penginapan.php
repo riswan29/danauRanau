@@ -74,25 +74,38 @@ function getPenginapan() {
 }
 
 // Fungsi untuk menampilkan data penginapan dalam HTML
+// Fungsi untuk menampilkan data penginapan dalam HTML dengan deskripsi dibatasi 50 kata
 function showPenginapan($penginapan) {
-    echo '<div class="box-container">';
-    foreach ($penginapan as $item) {
-        echo '<div class="box">';
-        echo '<div class="image">';
-        echo "<img src='admin/penginapan/uploads/" . $item['gambar'] . "' alt='' >";
-        echo '</div>';
-        echo '<div class="content">';
-        echo '<h3>' . $item['nama_penginapan'] . '</h3>';
-        echo '<p>' . $item['deskripsi'] . '</p>';
-        echo '<div class="stars">';
-        echo '<i class="fas fa-star"></i>';
-        echo '</div>';
-        echo '<a href="detail_penginapan.php?id=' . $item['id'] . '" class="btn">read more</a>';
-        echo '</div>';
-        echo '</div>';
-    }
-    echo '</div>';
+   echo '<div class="box-container">';
+   foreach ($penginapan as $item) {
+       echo '<div class="box">';
+       echo '<div class="image">';
+       echo "<img src='admin/penginapan/uploads/" . $item['gambar'] . "' alt='' >";
+       echo '</div>';
+       echo '<div class="content">';
+       echo '<h3>' . $item['nama_penginapan'] . '</h3>';
+
+       // Memotong deskripsi menjadi 50 kata
+       $deskripsi = $item['deskripsi'];
+       $deskripsi = mb_substr($deskripsi, 0, 50, 'UTF-8');
+       $deskripsi = rtrim($deskripsi, "!,.-");
+       $deskripsi = substr($deskripsi, 0, strrpos($deskripsi, ' '));
+       echo '<p>' . $deskripsi . '...</p>';
+
+       echo '<div class="stars">';
+       echo '<i class="fas fa-star"></i>';
+       echo '<i class="fas fa-star"></i>';
+       echo '<i class="fas fa-star"></i>';
+       echo '<i class="fas fa-star"></i>';
+       echo '<i class="fas fa-star"></i>';
+       echo '</div>';
+       echo '<a href="detail_penginapan.php?id=' . $item['id'] . '" class="btn">read more</a>';
+       echo '</div>';
+       echo '</div>';
+   }
+   echo '</div>';
 }
+
 
 $penginapan = getPenginapan();
 showPenginapan($penginapan);

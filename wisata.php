@@ -41,7 +41,7 @@
 
     <!-- header section ends -->
 
-    <div class="heading" style="background:url(images/header-bg-2.png) no-repeat">  
+    <div class="heading" style="background:url(images/header-bg-2.png) no-repeat">
         <h1>Wisata</h1>
     </div>
 
@@ -89,7 +89,11 @@
             echo '</div>';
             echo '<div class="content">';
             echo '<h3>' . $nama_wisata . '</h3>';
-            echo '<p>' . $deskripsi . '</p>';
+            $deskripsi = $row['deskripsi'];
+            $deskripsi = mb_substr($deskripsi, 0, 50, 'UTF-8');
+            $deskripsi = rtrim($deskripsi, "!,.-");
+            $deskripsi = substr($deskripsi, 0, strrpos($deskripsi, ' '));
+            echo '<p>' . $deskripsi . '...</p>';
             echo '<div class="stars">';
             echo '<i class="fas fa-star"></i>';
             echo '<i class="fas fa-star"></i>';

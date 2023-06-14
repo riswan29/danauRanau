@@ -43,12 +43,107 @@ $result = mysqli_query($conn, $query);
         th {
             background-color: #f2f2f2;
         }
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+    .search-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+#wahanaTable {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        #wahanaTable th,
+        #wahanaTable td {
+            padding: 8px;
+            border: 1px solid #ddd;
+        }
+
+        #wahanaTable th {
+            background-color: #ac86a8;
+            text-align: center;
+        }
+
+        #wahanaTable td img {
+            max-width: 100px;
+            height: auto;
+        }
+        .cc {
+            width: 40%;
+        }
+        .bb {
+            width: 10%;
+        }
+
+    .search-input {
+        padding: 10px;
+        margin-right: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 14px;
+        width: 250px;
+    }
+
+    .search-input::placeholder {
+        color: #999;
+    }
+
+    .search-button {
+        padding: 10px 20px;
+        background-color: #ac86a8;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .search-button:hover {
+        background-color: #45a049;
+    }
+
+    .edit-button {
+        margin-left: 20px;
+        padding: 5px 10px;
+        background-color: #ac86a8;
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+
+    .edit-button:hover {
+        background-color: #45a049;
+    }
+
+    .delete-button {
+        margin-left: 12px;
+        padding: 5px 10px;
+        background-color: #f44336;
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+
+    .delete-button:hover {
+        background-color: #d32f2f;
+    }
     </style>
 </head>
 <body>
     <h2>Data Wisata</h2>
     <p>Total data: <?php echo getTotalData(); ?></p>
-    <table class='table'>
+    <table class='table' id='wahanaTable'>
         <tr>
             <th>Nama</th>
             <th>Deskripsi</th>

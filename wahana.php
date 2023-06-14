@@ -1,191 +1,183 @@
-<?php
-// Koneksi ke database (ganti dengan informasi koneksi sesuai dengan database Anda)
-$host = 'localhost';
-$username = 'root';
-$password = '';
-$database = 'indah';
-
-$conn = mysqli_connect($host, $username, $password, $database);
-
-// Memeriksa apakah parameter ID ada dalam URL
-if (isset($_GET['id'])) {
-    // Mendapatkan ID dari parameter URL
-    $id = $_GET['id'];
-
-    // Mengambil data wisata berdasarkan ID
-    $query = "SELECT * FROM wahana WHERE id = $id";
-    $result = mysqli_query($conn, $query);
-
-    // Memeriksa apakah data ditemukan
-    if (mysqli_num_rows($result) > 0) {
-        $row = mysqli_fetch_assoc($result);
-        $nama_wahana = $row['nama_wahana'];
-        $gambar = $row['gambar'];
-        $gambar2 = $row['gambar2'];
-        $deskripsi = $row['deskripsi'];
-    } else {
-        echo "Data wisata tidak ditemukan.";
-    }
-} else {
-    echo "Parameter ID tidak ditemukan dalam URL.";
-}
-
-// Tutup koneksi database
-mysqli_close($conn);
-?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wisata Danau Ranau</title>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Penginapan | Wisata Danau Ranau</title>
 
-    <!-- swiper css link  -->
-    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+   <!-- swiper css link  -->
+   <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
 
-    <!-- font awesome cdn link  -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+   <!-- font awesome cdn link  -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
-    <!-- custom css file link  -->
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/bot.css">
+   <!-- custom css file link  -->
+   <link rel="stylesheet" href="css/style.css">
+   <link rel="stylesheet" href="css/bot.css">
+
 
 </head>
-
 <body>
 
-    <!-- header section starts  -->
+<!-- header section starts  -->
 
-    <section class="header">
+<section class="header">
 
-        <a href="index.php" class="logo" id="#">Wisata Danau Ranau.</a>
+   <a href="index.php" class="logo">Wisata danau ranau.</a>
 
-        <nav class="navbar">
-            <a href="index.php"> Beranda</a>
-            <a href="tentang.php"> tentang</a>
-            <a href="wisata.php"> wisata</a>
-            <a href="penginapan.php"> penginapan</a>
-            <a href="wahana.php"> wahana</a>
-            <a href="index.php#event"> event</a>
-        </nav>
+   <nav class="navbar">
+      <a href="index.php">  Beranda</a>
+      <a href="#">  tentang</a>
+      <a href="wisata.php">  destinasi</a>
+      <a href="penginapan.php">  penginapan</a>
+      <a href="wahana.php">  wahana</a>
+      <a href="index.php#event">  event</a>
+   </nav>
+   <div id="menu-btn" class="fas fa-bars"></div>
 
-        <div id="menu-btn" class="fas fa-bars"></div>
+</section>
 
-    </section>
+<!-- header section ends -->
 
-    <?php if (isset($row)): ?>
-    <section class="home">
+<div class="heading" style="background:url(images/header-bg-2.png) no-repeat">
+   <h1>penginapan</h1>
+</div>
 
-        <div class="swiper home-slider">
+<!-- packages section starts  -->
 
-            <div class="swiper-wrapper">
+<section class="packages">
 
-                <div class="swiper-slide slide"
-                    style="background:url(admin/wahana/uploads/<?php echo $gambar2; ?>) no-repeat">
-                    <!-- <div class="content">
-                  <span>selamat datang di</span>
-                  <h3>wisata danau ranau</h3>
-                  <a href="wisata.php" class="btn">explore</a>
-               </div> -->
-                </div>
-    </section>
-    <!-- <div class="heading" style="background:url(images/penginapan/1.Penginapan_Pusri/Penginapan_pusri.jpg) no-repeat"> -->
-    <!-- <h1>destinasi</h1> -->
-    <!-- </div> -->
+   <h1 class="heading-title">wahana</h1>
 
-    <section class="home-packages">
+   <div class="box-container">
 
-        <h1 class="heading-title" id="destinasi"> <?php echo $nama_wisata; ?>
-        </h1>
-    </section>
+<?php
+// Koneksi ke database
+$host = "localhost"; // Ganti dengan host database Anda
+$username = "root"; // Ganti dengan username database Anda
+$password = ""; // Ganti dengan password database Anda
+$database = "indah"; // Ganti dengan nama database Anda
 
-    <section class="home-about">
+$conn = mysqli_connect($host, $username, $password, $database);
+if (!$conn) {
+    die("Koneksi gagal: " . mysqli_connect_error());
+}
 
-        <div class="image">
-            <!-- <img src="images/objekwisata/7.Air_Terjun_Niagara/IMG_0680.jpg" alt=""> -->
-            <img src="admin/wahana/uploads/<?php echo $gambar; ?>" alt="Destination Image">
-        </div>
+// Fungsi untuk mendapatkan data wahana dari database
+function getwahana() {
+    global $conn;
+    $query = "SELECT * FROM wahana";
+    $result = mysqli_query($conn, $query);
+    $wahana = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    return $wahana;
+}
 
-        <div class="content">
-            <h3>Deskripsi</h3>
-            <p><?php echo $deskripsi; ?>
-            <a href="https://wa.me/6281373610139?text=Hallo admin,saya mau pesan" class="btn">Pesan</a>
+// Fungsi untuk menampilkan data wahana dalam HTML
+// Fungsi untuk menampilkan data wahana dalam HTML dengan deskripsi dibatasi 50 kata
+function showwahana($wahana) {
+   echo '<div class="box-container">';
+   foreach ($wahana as $item) {
+       echo '<div class="box">';
+       echo '<div class="image">';
+       echo "<img src='admin/wahana/uploads/" . $item['gambar'] . "' alt='' >";
+       echo '</div>';
+       echo '<div class="content">';
+       echo '<h3>' . $item['nama_wahana'] . '</h3>';
 
-            </p>
-        </div>
+       // Memotong deskripsi menjadi 50 kata
+       $deskripsi = $item['deskripsi'];
+       $deskripsi = mb_substr($deskripsi, 0, 50, 'UTF-8');
+       $deskripsi = rtrim($deskripsi, "!,.-");
+       $deskripsi = substr($deskripsi, 0, strrpos($deskripsi, ' '));
+       echo '<p>' . $deskripsi . '...</p>';
 
-    </section>
-    <?php endif; ?>
-    <!-- header section ends -->
-
-    <!-- bot -->
-    <section>
-        <img src="images/bot.png" alt="" class="chat-icon" width="50px" height="50px">
-        <div class="chat-popup">
-            <form class="chat-form" onsubmit="return submitForm(event)">
-                <input type="text" id="chat-input" placeholder="Tulis pesan anda disini...">
-                <button type="submit">Kirim</button>
-            </form>
-            <div id="chat-response"></div>
-        </div>
-        <!-- bot -->
-    </section>
-    <!-- footer section starts  -->
-    <section class="footer">
-
-        <div class="box-container">
-
-            <div class="box">
-                <h3>quick links</h3>
-                <a href="#"> <i class="fas fa-angle-right"></i> Beranda</a>
-                <a href="#about"> <i class="fas fa-angle-right"></i> tentang</a>
-                <a href="#destinasi"> <i class="fas fa-angle-right"></i> desitnasi</a>
-                <a href="#penginapan"> <i class="fas fa-angle-right"></i> penginapan</a>
-                <a href="#wahana"> <i class="fas fa-angle-right"></i> wahana</a>
-                <a href="#event"> <i class="fas fa-angle-right"></i> event</a>
-            </div>
-
-            <div class="box">
-                <h3>contact info</h3>
-                <a href="#"> <i class="fas fa-phone"></i> +62 823-9282-3072 </a>
-                <a href="#"> <i class="fas fa-phone"></i> +62 823-9282-3072 </a>
-                <a href="#"> <i class="fas fa-envelope"></i> Indahhusnul9@gmail.com </a>
-                <a href="#"> <i class="fas fa-map"></i> danau ranau, sumatera selatan </a>
-            </div>
-
-            <div class="box">
-                <h3>follow us</h3>
-                <a href="#"> <i class="fab fa-facebook-f"></i> facebook </a>
-                <a href="#"> <i class="fab fa-twitter"></i> twitter </a>
-                <a href="#"> <i class="fab fa-instagram"></i> instagram </a>
-                <a href="#"> <i class="fab fa-linkedin"></i> linkedin </a>
-            </div>
-
-        </div>
-
-        <div class="credit"> created by <span>indah husnul khotimah</span> | all rights reserved! </div>
-
-    </section>
-
-    <!-- footer section ends -->
+       echo '<div class="stars">';
+       echo '<i class="fas fa-star"></i>';
+       echo '<i class="fas fa-star"></i>';
+       echo '<i class="fas fa-star"></i>';
+       echo '<i class="fas fa-star"></i>';
+       echo '<i class="fas fa-star"></i>';
+       echo '</div>';
+       echo '<a href="detail_wahana.php?id=' . $item['id'] . '" class="btn">read more</a>';
+       echo '</div>';
+       echo '</div>';
+   }
+   echo '</div>';
+}
 
 
+$wahana = getwahana();
+showwahana($wahana);
+
+mysqli_close($conn);
+?>
 
 
+</div>
+
+</section>
+
+<!-- packages section ends -->
+
+<section>
+<img src="images/bot.png" alt="" class="chat-icon" width="50px" height="50px"">
+<div class="chat-popup">
+  <form class="chat-form" onsubmit="return submitForm(event)">
+    <input type="text" id="chat-input" placeholder="Tulis pesan anda disini...">
+    <button type="submit">Kirim</button>
+  </form>
+  <div id="chat-response"></div>
+</div>
+<!-- bot -->
+</section>
+   <!-- footer section starts  -->
+
+   <section class="footer">
+
+      <div class="box-container">
+
+         <div class="box">
+            <h3>quick links</h3>
+            <a href="#"> <i class="fas fa-angle-right"></i> Beranda</a>
+            <a href="#about"> <i class="fas fa-angle-right"></i> tentang</a>
+            <a href="#destinasi"> <i class="fas fa-angle-right"></i> desitnasi</a>
+            <a href="#penginapan"> <i class="fas fa-angle-right"></i> penginapan</a>
+            <a href="#wahana"> <i class="fas fa-angle-right"></i> wahana</a>
+            <a href="#event"> <i class="fas fa-angle-right"></i> event</a>
+         </div>
+
+         <div class="box">
+            <h3>contact info</h3>
+            <a href="#"> <i class="fas fa-phone"></i> +62 823-9282-3072 </a>
+            <a href="#"> <i class="fas fa-phone"></i> +62 823-9282-3072 </a>
+            <a href="#"> <i class="fas fa-envelope"></i> Indahhusnul9@gmail.com </a>
+            <a href="#"> <i class="fas fa-map"></i> danau ranau, sumatera selatan </a>
+         </div>
+
+         <div class="box">
+            <h3>follow us</h3>
+            <a href="#"> <i class="fab fa-facebook-f"></i> facebook </a>
+            <a href="#"> <i class="fab fa-twitter"></i> twitter </a>
+            <a href="#"> <i class="fab fa-instagram"></i> instagram </a>
+            <a href="#"> <i class="fab fa-linkedin"></i> linkedin </a>
+         </div>
+
+      </div>
+
+      <div class="credit"> created by <span>indah husnul khotimah</span> | all rights reserved! </div>
+
+   </section>
+
+   <!-- footer section ends -->
 
 
+<!-- swiper js link  -->
+<script src="https://un pkg.com/swiper@7/swiper-bundle.min.js"></script>
 
-
-
-    <!-- swiper js link  -->
-    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
-
-    <!-- custom js file link  -->
-    <script src="js/script.js"></script>
-    <script src="js/bot.js"></script>
+<!-- custom js file link  -->
+<script src="js/script.js"></script>
+<script src="js/bot.js"></script>
 
 </body>
-
 </html>

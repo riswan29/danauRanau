@@ -1,3 +1,105 @@
+<style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+    .search-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+#wahanaTable {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        #wahanaTable th,
+        #wahanaTable td {
+            padding: 8px;
+            border: 1px solid #ddd;
+        }
+
+        #wahanaTable th {
+            background-color: #ac86a8;
+            text-align: center;
+        }
+
+        #wahanaTable td img {
+            max-width: 100px;
+            height: auto;
+        }
+        .cc {
+            width: 40%;
+        }
+        .bb {
+            width: 10%;
+        }
+
+    .search-input {
+        padding: 10px;
+        margin-right: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 14px;
+        width: 250px;
+    }
+
+    .search-input::placeholder {
+        color: #999;
+    }
+
+    .search-button {
+        padding: 10px 20px;
+        background-color: #ac86a8;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .search-button:hover {
+        background-color: #45a049;
+    }
+
+    .edit-button {
+        margin-left: 20px;
+        padding: 5px 10px;
+        background-color: #ac86a8;
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+
+    .edit-button:hover {
+        background-color: #45a049;
+    }
+
+    .delete-button {
+        margin-left: 12px;
+        padding: 5px 10px;
+        background-color: #f44336;
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+
+    .delete-button:hover {
+        background-color: #d32f2f;
+    }
+
+
+    </style>
+    </body>
+
+</html>
 <?php
 // Koneksi ke database
 require '../conn.php';
@@ -50,8 +152,10 @@ $totalPages = ceil($totalData / $limit);
 if (mysqli_num_rows($result) > 0) {
     if (!isset($_GET['search'])) { // Tampilkan pencarian hanya jika tidak ada pencarian yang dilakukan
         echo "<form action='tampil.php' method='GET'>";
-        echo "<input type='text' name='search' value='$searchValue' placeholder='Cari Nama Wahana...'>";
-        echo "<input type='submit' value='Cari'>";
+        echo "<div class='search-container'>";
+        echo "<input type='text' name='search' value='$searchValue' placeholder='Cari Nama Wahana...' class='search-input'>";
+        echo "<input type='submit' value='Cari' class='search-button'>";
+        echo "</div>";
         echo "</form>";
     }
 
@@ -70,7 +174,7 @@ if (mysqli_num_rows($result) > 0) {
         echo "<td><img src='uploads/" . $row["gambar"] . "' alt='Gambar Wahana 1' width='100'></td>";
         echo "<td><img src='uploads/" . $row["gambar2"] . "' alt='Gambar Wahana 2' width='100'></td>";
 
-        echo "<td><a href='edit.php?id=" . $row["id"] . "'>Edit</a> | <a href='tampil.php?delete=" . $row["id"] . "' onclick='return confirmDelete();'>Delete</a></td>";
+        echo "<td><button class='edit-button' onclick=\"location.href='edit.php?id=" . $row["id"] . "'\">Edit</button><br><br><button class='delete-button' onclick=\"confirmDelete(" . $row["id"] . ")\">Delete</button></td>";
         echo "</tr>";
         $no++;
     }
@@ -110,6 +214,7 @@ if (mysqli_num_rows($result) > 0) {
 mysqli_close($conn);
 ?>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -138,3 +243,4 @@ mysqli_close($conn);
         });
     });
 </script>
+<link href="../style.css" rel="stylesheet">
