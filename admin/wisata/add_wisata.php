@@ -8,7 +8,7 @@ $database = 'indah';
 $conn = mysqli_connect($host, $username, $password, $database);
 
 // Fungsi untuk menambahkan data wisata ke database
-function addWisata($nama_wisata, $deskripsi, $kategori, $gambar1, $gambar2)
+function addWisata($nama_wisata, $deskripsi, $kategori, $gambar1, $gambar2, $longitude, $latitude)
 {
     global $conn;
 
@@ -16,6 +16,8 @@ function addWisata($nama_wisata, $deskripsi, $kategori, $gambar1, $gambar2)
     $nama_wisata = mysqli_real_escape_string($conn, $nama_wisata);
     $deskripsi = mysqli_real_escape_string($conn, $deskripsi);
     $kategori = mysqli_real_escape_string($conn, $kategori);
+    $longitude = mysqli_real_escape_string($conn, $longitude);
+    $latitude = mysqli_real_escape_string($conn, $latitude);
 
     // Mengambil informasi gambar pertama
     $gambar1Name = $_FILES['gambar']['name'];
@@ -48,7 +50,7 @@ function addWisata($nama_wisata, $deskripsi, $kategori, $gambar1, $gambar2)
                 // Memindahkan gambar kedua yang diunggah ke folder tujuan
                 if (move_uploaded_file($gambar2Tmp, $gambar2Destination)) {
                     // Menyimpan data wisata ke dalam tabel wisata
-                    $query = "INSERT INTO wisata (nama_wisata, deskripsi, kategori, gambar, gambar2) VALUES ('$nama_wisata', '$deskripsi', '$kategori', '$gambar1Name', '$gambar2Name')";
+                    $query = "INSERT INTO wisata (nama_wisata, deskripsi, kategori, gambar, gambar2, longitude, latitude) VALUES ('$nama_wisata', '$deskripsi', '$kategori', '$gambar1Name', '$gambar2Name', '$longitude', '$latitude')";
                     $result = mysqli_query($conn, $query);
 
                     if ($result) {
@@ -77,9 +79,11 @@ if (isset($_POST['submit'])) {
     $kategoriWisata = $_POST['kategori'];
     $gambarWisata1 = $_FILES['gambar'];
     $gambarWisata2 = $_FILES['gambar2'];
+    $longitudeWisata = $_POST['longitude'];
+    $latitudeWisata = $_POST['latitude'];
 
     // Memanggil fungsi addWisata untuk menambahkan data ke database
-    addWisata($namaWisata, $deskripsiWisata, $kategoriWisata, $gambarWisata1, $gambarWisata2);
+    addWisata($namaWisata, $deskripsiWisata, $kategoriWisata, $gambarWisata1, $gambarWisata2, $longitudeWisata, $latitudeWisata);
 }
 
 // Menutup koneksi ke database

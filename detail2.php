@@ -47,11 +47,16 @@ mysqli_close($conn);
 
     <!-- font awesome cdn link  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css" />
 
     <!-- custom css file link  -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/bot.css">
     <style>
+        #map {
+            height: 400px;
+            width: 100%;
+        }
         .containerr {
         width: 300px; /* Atur lebar sesuai kebutuhan */
         white-space: nowrap; /* Menghindari pemotongan teks */
@@ -121,6 +126,7 @@ mysqli_close($conn);
             <?php echo ($deskripsi); ?>
             <a href="https://wa.me/6281373610139?text=Hallo admin,saya mau pesan" class="btn">Pesan</a>
         </div>
+        <div id="map" style="height: 300px;"></div>
 
     </section>
     <?php endif; ?>
@@ -191,6 +197,67 @@ mysqli_close($conn);
     <!-- custom js file link  -->
     <script src="js/script.js"></script>
     <script src="js/bot.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
+        <!-- ... -->
+<script>
+    var map = L.map('map').setView([0, 0], 2);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">Google Maps API</a> contributors',
+        maxZoom: 18,
+    }).addTo(map);
+
+    <?php
+    $host = 'localhost';
+    $username = 'root';
+    $password = '';
+    $database = 'indah';
+    $conn = mysqli_connect($host, $username, $password, $database);
+    if (!$conn) {
+        die("Koneksi database gagal: " . mysqli_connect_error());
+    }
+
+    if (isset($row)) {
+        $latitude = $row['latitude'];
+        $longitude = $row['longitude'];
+        $locationName = $row['nama_wisata'];
+
+        echo "var marker = L.marker([$latitude, $longitude]).addTo(map);";
+        echo "marker.bindPopup('<a href=\"https://www.google.com/maps/search/?api=1&query=$latitude,$longitude\" target=\"_blank\">$locationName</a>');";
+
+        echo "marker.on('click', function() {";
+        echo "    window.open('https://www.google.com/maps/search/?api=1&query=$latitude,$longitude', '_blank');";
+        echo "});";
+
+        echo "map.setView([$latitude, $longitude], 15);";
+    }
+
+    mysqli_close($conn);
+    ?>
+
+    function submitForm(event) {
+        event.preventDefault();
+        var input = document.getElementById("chat-input");
+        var responseContainer = document.getElementById("chat-response");
+
+        var message = input.value;
+        input.value = "";
+
+        var messageElement = document.createElement("div");
+        messageElement.className = "message sent";
+        messageElement.textContent = message;
+
+        responseContainer.appendChild(messageElement);
+
+        setTimeout(function () {
+            var replyElement = document.createElement("div");
+            replyElement.className = "message reply";
+            replyElement.textContent = "I'm sorry, I am an AI language model and can't perform any booking actions. For further assistance, please contact our customer support.";
+            responseContainer.appendChild(replyElement);
+        }, 1000);
+    }
+</script>
+<!-- ... -->
 
 </body>
 
