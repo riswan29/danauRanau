@@ -1,9 +1,9 @@
 <?php
 // Koneksi ke database (ganti dengan informasi koneksi sesuai dengan database Anda)
-$host = 'localhost';
-$username = 'root';
-$password = '';
-$database = 'indah';
+$servername = "sql108.infinityfree.com";
+$username = "if0_34455488";
+$password = "xTPuUTeZwDMGzZ";
+$dbname = "if0_34455488_indah";
 
 $conn = mysqli_connect($host, $username, $password, $database);
 
@@ -28,7 +28,7 @@ $query_wahana = "SELECT * FROM wahana ORDER BY id DESC LIMIT 3";
 $result_wahana = mysqli_query($conn, $query_wahana);
 ?>
 
-<!DOCTYPE html>
+<!DOCTYPE html>z
 <html lang="en">
 
 <head>
@@ -136,7 +136,43 @@ $result_wahana = mysqli_query($conn, $query_wahana);
 
     <section class="home-packages">
 
-        <h1 class="heading-title" id="destinasi"> destinasi </h1>
+        <h1 class="heading-title" id="destinasi"> Wisata Alam </h1>
+
+        <div class="box-container">
+
+            <?php
+            // Menampilkan data wisata terbaru dari database
+            while ($row = mysqli_fetch_assoc($result)) {
+                $description = substr($row['deskripsi'], 0, 50) . '...'; // Mengambil 50 karakter pertama dari deskripsi
+
+                echo '<div class="box">';
+                echo '<div class="image">';
+                echo "<img src='admin/wisata/uploads/" . $row['gambar'] . "' alt=''>";
+                echo '</div>';
+                echo '<div class="content">';
+                echo '<h3>' . $row['nama_wisata'] . '</h3>';
+                echo '<p>' . $description . '</p>';
+                echo '<div class="stars">';
+                echo '<i class="fas fa-star"></i>';
+                echo '<i class="fas fa-star"></i>';
+                echo '<i class="fas fa-star"></i>';
+                echo '<i class="fas fa-star"></i>';
+                echo '<i class="fas fa-star"></i>';
+                echo '</div>';
+                echo '<a href="detail2.php?id=' . $row['id'] . '" class="btn">read more</a>';
+                echo '</div>';
+                echo '</div>';
+            }
+            ?>
+
+        </div>
+
+        <div class="load-more"> <a href="wisata.php" class="btn">load more</a> </div>
+
+    </section>
+    <section class="home-packages">
+
+        <h1 class="heading-title" id="destinasi"> Wisata Budaya dan Agama</h1>
 
         <div class="box-container">
 
@@ -173,7 +209,7 @@ $result_wahana = mysqli_query($conn, $query_wahana);
 
 
     <section class="home-packages">
-    <h1 class="heading-title" id="event">Event</h1>
+    <h1 class="heading-title" id="event">Event Tahunan</h1>
     <div class="box-container">
         <?php
         // Mendapatkan 3 data event terbaru dari database
@@ -245,7 +281,7 @@ $result_wahana = mysqli_query($conn, $query_wahana);
 </section>
 
 <section class="home-packages">
-    <h1 class="heading-title" id="wahana">Wahana</h1>
+    <h1 class="heading-title" id="wahana">Wahana Wisata</h1>
     <div class="box-container">
         <?php
         // Mendapatkan 3 data wahana terbaru dari database
