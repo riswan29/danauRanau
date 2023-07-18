@@ -28,8 +28,7 @@
 
    <nav class="navbar">
       <a href="index.php">  Beranda</a>
-      <a href="#">  tentang</a>
-      <a href="wisata.php">  destinasi</a>
+      <a href="wisata.php">  Wisata</a>
       <a href="penginapan.php">  penginapan</a>
       <a href="wahana.php">  wahana</a>
       <a href="index.php#event">  event</a>
@@ -140,8 +139,7 @@ mysqli_close($conn);
          <div class="box">
             <h3>quick links</h3>
             <a href="#"> <i class="fas fa-angle-right"></i> Beranda</a>
-            <a href="#about"> <i class="fas fa-angle-right"></i> tentang</a>
-            <a href="#destinasi"> <i class="fas fa-angle-right"></i> desitnasi</a>
+            <a href="#Wisata"> <i class="fas fa-angle-right"></i> Wisata</a>
             <a href="#penginapan"> <i class="fas fa-angle-right"></i> penginapan</a>
             <a href="#wahana"> <i class="fas fa-angle-right"></i> wahana</a>
             <a href="#event"> <i class="fas fa-angle-right"></i> event</a>

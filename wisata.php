@@ -16,6 +16,31 @@
     <!-- custom css file link  -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/bot.css">
+    <style>
+        .filter-buttons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.filter-btn {
+    padding: 8px 16px;
+    margin: 0 4px;
+    border: none;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.filter-btn.active {
+    background-color: #333;
+    color: #fff;
+}
+    </style>
 
 </head>
 
@@ -29,8 +54,7 @@
 
 <nav class="navbar">
    <a href="index.php">  Beranda</a>
-   <a href="#">  tentang</a>
-   <a href="wisata.php">  destinasi</a>
+   <a href="wisata.php">  Wisata</a>
    <a href="penginapan.php">  penginapan</a>
    <a href="wahana.php">  wahana</a>
    <a href="index.php#event">  event</a>
@@ -46,6 +70,17 @@
     </div>
 
     <!-- packages section starts  -->
+
+<div class="filter-buttons">
+    <button class="filter-btn active" data-category="all">Semua</button>
+    <?php
+    $categories = ['Wisata Alam', 'Wisata Budaya dan Agama', 'Wisata Kuliner'];
+    // Menampilkan filter buttons berdasarkan kategori yang diambil dari database
+    foreach ($categories as $category) {
+        echo '<button class="filter-btn" data-category="' . $category . '">' . $category . '</button>';
+    }
+    ?>
+</div>
 
     <section class="packages">
 
@@ -67,55 +102,65 @@
     }
 
     // Query untuk mendapatkan data wahana
-    $sql = "SELECT * FROM wisata";
-    $result = mysqli_query($conn, $sql);
+    // Query untuk mendapatkan data wahana
+$sql = "SELECT * FROM wisata";
+$result = mysqli_query($conn, $sql);
 
-    // Memeriksa apakah ada data yang ditemukan
-    if (mysqli_num_rows($result) > 0) {
-        // Menampilkan data wahana
-        $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
+// Memeriksa apakah ada data yang ditemukan
+if (mysqli_num_rows($result) > 0) {
+    // Menampilkan data wahana
+    $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-        for ($i = 0; $i < count($data); $i++) {
-            $row = $data[$i];
-            $nama_wisata = $row["nama_wisata"];
-            // echo $nama_wisata;
-            // echo "<br>";
-            $deskripsi = $row["deskripsi"];
-            $gambar = $row["gambar"];
+    // Membuat array untuk menyimpan kategori unik
+    $categories = array();
 
-            echo '<div class="box">';
-            echo '<div class="image">';
-            echo "<img src='admin/wisata/uploads/" . $gambar . "' alt=''>";
-            echo '</div>';
-            echo '<div class="content">';
-            echo '<h3>' . $nama_wisata . '</h3>';
-            $deskripsi = $row['deskripsi'];
-            $deskripsi = mb_substr($deskripsi, 0, 50, 'UTF-8');
-            $deskripsi = rtrim($deskripsi, "!,.-");
-            $deskripsi = substr($deskripsi, 0, strrpos($deskripsi, ' '));
-            echo '<p>' . $deskripsi . '...</p>';
-            echo '<div class="stars">';
-            echo '<i class="fas fa-star"></i>';
-            echo '<i class="fas fa-star"></i>';
-            echo '<i class="fas fa-star"></i>';
-            echo '<i class="fas fa-star"></i>';
-            echo '<i class="fas fa-star"></i>';
-            echo '</div>';
-            echo '<a href="detail2.php?id=' . $row['id'] . '" class="btn">read more</a>';
-            echo '</div>';
-            echo '</div>';
+    for ($i = 0; $i < count($data); $i++) {
+        $row = $data[$i];
+        $nama_wisata = $row["nama_wisata"];
+        $deskripsi = $row["deskripsi"];
+        $gambar = $row["gambar"];
+        $kategori = $row["kategori"];
+
+        // Menambahkan kategori ke array jika belum ada
+        if (!in_array($kategori, $categories)) {
+            $categories[] = $kategori;
         }
-    } else {
-        echo mysqli_error($conn);
-        echo "Tidak ada data wahana.";
-    }
 
-    // Menutup koneksi ke database
-    $conn->close();
+        echo '<div class="box" data-category="' . $kategori . '">';
+        echo '<div class="image">';
+        echo "<img src='admin/wisata/uploads/" . $gambar . "' alt=''>";
+        echo '</div>';
+        echo '<div class="content">';
+        echo '<h3>' . $nama_wisata . '</h3>';
+        $deskripsi = mb_substr($deskripsi, 0, 50, 'UTF-8');
+        $deskripsi = rtrim($deskripsi, "!,.-");
+        $deskripsi = substr($deskripsi, 0, strrpos($deskripsi, ' '));
+        echo '<p>' . $deskripsi . '...</p>';
+        echo '<div class="stars">';
+        echo '<i class="fas fa-star"></i>';
+        echo '<i class="fas fa-star"></i>';
+        echo '<i class="fas fa-star"></i>';
+        echo '<i class="fas fa-star"></i>';
+        echo '<i class="fas fa-star"></i>';
+        echo '</div>';
+        echo '<a href="detail2.php?id=' . $row['id'] . '" class="btn">read more</a>';
+        echo '</div>';
+        echo '</div>';
+    }
+} else {
+    echo mysqli_error($conn);
+    echo "Tidak ada data wahana.";
+}
+
+// Menutup koneksi ke database
+$conn->close();
     ?>
 </div>
 
 </section>
+
+
+
 
 
     <!-- packages section ends -->
@@ -141,8 +186,7 @@
          <div class="box">
             <h3>quick links</h3>
             <a href="#"> <i class="fas fa-angle-right"></i> Beranda</a>
-            <a href="#about"> <i class="fas fa-angle-right"></i> tentang</a>
-            <a href="#destinasi"> <i class="fas fa-angle-right"></i> desitnasi</a>
+            <a href="#Wisata"> <i class="fas fa-angle-right"></i> Wisata</a>
             <a href="#penginapan"> <i class="fas fa-angle-right"></i> penginapan</a>
             <a href="#wahana"> <i class="fas fa-angle-right"></i> wahana</a>
             <a href="#event"> <i class="fas fa-angle-right"></i> event</a>
@@ -179,6 +223,45 @@
 <!-- custom js file link  -->
 <script src="js/script.js"></script>
 <script src="js/bot.js"></script>
+<script>
+    // Fungsi untuk menampilkan wisata berdasarkan kategori yang dipilih
+function filterByCategory(category) {
+    var boxes = document.getElementsByClassName('box');
 
+    for (var i = 0; i < boxes.length; i++) {
+        var box = boxes[i];
+        var categoryClass = box.getAttribute('data-category');
+
+        if (category === 'all' || category === categoryClass) {
+            box.style.display = 'block';
+        } else {
+            box.style.display = 'none';
+        }
+    }
+}
+
+// Fungsi untuk mengatur filter yang aktif
+function setActiveFilter(filterBtn) {
+    var filterBtns = document.getElementsByClassName('filter-btn');
+
+    for (var i = 0; i < filterBtns.length; i++) {
+        filterBtns[i].classList.remove('active');
+    }
+
+    filterBtn.classList.add('active');
+}
+
+// Event listener untuk filter buttons
+var filterButtons = document.getElementsByClassName('filter-btn');
+
+for (var i = 0; i < filterButtons.length; i++) {
+    filterButtons[i].addEventListener('click', function() {
+        var category = this.getAttribute('data-category');
+        filterByCategory(category);
+        setActiveFilter(this);
+    });
+}
+
+</script>
 </body>
 </html>

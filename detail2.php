@@ -77,7 +77,6 @@ mysqli_close($conn);
 
         <nav class="navbar">
             <a href="index.php"> Beranda</a>
-            <a href="tentang.php"> tentang</a>
             <a href="wisata.php"> wisata</a>
             <a href="penginapan.php"> penginapan</a>
             <a href="wahana.php"> wahana</a>

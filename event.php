@@ -125,7 +125,6 @@
          <div class="box">
             <h3>quick links</h3>
             <a href="#"> <i class="fas fa-angle-right"></i> Beranda</a>
-            <a href="#about"> <i class="fas fa-angle-right"></i> tentang</a>
             <a href="#destinasi"> <i class="fas fa-angle-right"></i> desitnasi</a>
             <a href="#penginapan"> <i class="fas fa-angle-right"></i> penginapan</a>
             <a href="#wahana"> <i class="fas fa-angle-right"></i> wahana</a>

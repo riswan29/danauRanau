@@ -1,11 +1,15 @@
 <?php
 // Koneksi ke database (ganti dengan informasi koneksi sesuai dengan database Anda)
-$servername = "sql108.infinityfree.com";
-$username = "if0_34455488";
-$password = "xTPuUTeZwDMGzZ";
-$dbname = "if0_34455488_indah";
+// $servername = "sql108.infinityfree.com";
+// $username = "if0_34455488";
+// $password = "xTPuUTeZwDMGzZ";
+// $dbname = "if0_34455488_indah";
+$host = "localhost";
+$username = "root";
+$password = "";
+$dbname = "indah";
 
-$conn = mysqli_connect($host, $username, $password, $database);
+$conn = mysqli_connect($host, $username, $password, $dbname);
 
 
 // Fungsi untuk mendapatkan total data wisata dari database
@@ -28,7 +32,7 @@ $query_wahana = "SELECT * FROM wahana ORDER BY id DESC LIMIT 3";
 $result_wahana = mysqli_query($conn, $query_wahana);
 ?>
 
-<!DOCTYPE html>z
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -59,7 +63,6 @@ $result_wahana = mysqli_query($conn, $query_wahana);
 
         <nav class="navbar">
             <a href="index.php"> Beranda</a>
-            <a href="#"> tentang</a>
             <a href="wisata.php"> wisata</a>
             <a href="penginapan.php"> penginapan</a>
             <a href="wahana.php"> wahana</a>
@@ -125,7 +128,6 @@ $result_wahana = mysqli_query($conn, $query_wahana);
             <h3>Tentang kami</h3>
             <p>Website kami menyediakan segala informasi yang dibutuhkan untuk perjalanan Anda ke Danau Ranau, termasuk
                 rekomendasi hotel, wisata, dan kuliner terbaik di daerah tersebut.</p>
-            <a href="#" class="btn">read more</a>
         </div>
 
     </section>
@@ -136,43 +138,7 @@ $result_wahana = mysqli_query($conn, $query_wahana);
 
     <section class="home-packages">
 
-        <h1 class="heading-title" id="destinasi"> Wisata Alam </h1>
-
-        <div class="box-container">
-
-            <?php
-            // Menampilkan data wisata terbaru dari database
-            while ($row = mysqli_fetch_assoc($result)) {
-                $description = substr($row['deskripsi'], 0, 50) . '...'; // Mengambil 50 karakter pertama dari deskripsi
-
-                echo '<div class="box">';
-                echo '<div class="image">';
-                echo "<img src='admin/wisata/uploads/" . $row['gambar'] . "' alt=''>";
-                echo '</div>';
-                echo '<div class="content">';
-                echo '<h3>' . $row['nama_wisata'] . '</h3>';
-                echo '<p>' . $description . '</p>';
-                echo '<div class="stars">';
-                echo '<i class="fas fa-star"></i>';
-                echo '<i class="fas fa-star"></i>';
-                echo '<i class="fas fa-star"></i>';
-                echo '<i class="fas fa-star"></i>';
-                echo '<i class="fas fa-star"></i>';
-                echo '</div>';
-                echo '<a href="detail2.php?id=' . $row['id'] . '" class="btn">read more</a>';
-                echo '</div>';
-                echo '</div>';
-            }
-            ?>
-
-        </div>
-
-        <div class="load-more"> <a href="wisata.php" class="btn">load more</a> </div>
-
-    </section>
-    <section class="home-packages">
-
-        <h1 class="heading-title" id="destinasi"> Wisata Budaya dan Agama</h1>
+        <h1 class="heading-title" id="destinasi"> Wisata</h1>
 
         <div class="box-container">
 
@@ -323,8 +289,7 @@ $result_wahana = mysqli_query($conn, $query_wahana);
             <div class="box">
                 <h3>quick links</h3>
                 <a href="#"> <i class="fas fa-angle-right"></i> Beranda</a>
-                <a href="#about"> <i class="fas fa-angle-right"></i> tentang</a>
-                <a href="#destinasi"> <i class="fas fa-angle-right"></i> desitnasi</a>
+                <a href="#destinasi"> <i class="fas fa-angle-right"></i> Wisata</a>
                 <a href="#penginapan"> <i class="fas fa-angle-right"></i> penginapan</a>
                 <a href="#wahana"> <i class="fas fa-angle-right"></i> wahana</a>
                 <a href="#event"> <i class="fas fa-angle-right"></i> event</a>
